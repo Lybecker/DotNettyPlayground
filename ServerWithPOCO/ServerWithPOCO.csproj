@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Poco.Comon\Poco.Comon.csproj" />
+  </ItemGroup>
+
 </Project>

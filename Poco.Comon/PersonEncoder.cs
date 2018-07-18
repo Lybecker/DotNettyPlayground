@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ServerWithPOCO
+namespace Poco.Comon
 {
     public class PersonEncoder : MessageToMessageEncoder<Person>
     {

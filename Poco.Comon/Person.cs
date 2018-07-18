@@ -1,4 +1,4 @@
-﻿namespace ServerWithPOCO
+﻿namespace Poco.Comon
 {
     public class Person
     {
