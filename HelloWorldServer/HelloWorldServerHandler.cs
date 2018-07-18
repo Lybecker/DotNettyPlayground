@@ -21,6 +21,7 @@ namespace HelloWorldServer
             ctx.WriteAndFlushAsync($"Hello, {msg}\r\n");
         }
 
+        // Catches inbound message exceptions
         public override void ExceptionCaught(IChannelHandlerContext contex, Exception e)
         {
             Logger.Error(e);

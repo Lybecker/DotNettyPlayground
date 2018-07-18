@@ -10,6 +10,14 @@ using System.Threading.Tasks;
 
 namespace HelloWorldServer
 {
+    /*
+     * This solution shows how to build a TCP server
+     *  - Encode and decode byte[] into strings via the build-in StringEncoder and StringDecoder
+     *  - Chaining ChannelHandlers into a ChannelPipeline
+     *  - HelloWorldServerHandler implements SimpleChannelInboundHandler, which encapsulated DotNetty specific stuff like reference counting 
+     *  - HasUpperCharsServerHandler implements raw ChannelHandlerAdapter and usages message forwarding to next Handler in the ChannelPipeline via FireChannelRead
+     *  - CountCharsServerHandler uses ChannelReadComplete to write to the output stream
+     */
     class Program
     {
         static async Task RunServerAsync()
@@ -24,7 +32,7 @@ namespace HelloWorldServer
 
             var encoder = new StringEncoder();
             var decoder = new StringDecoder();
-            var serverHandler = new HelloWorldServerHandler();
+            var helloWorldServerHandler = new HelloWorldServerHandler();
 
             try
             {
@@ -46,7 +54,7 @@ namespace HelloWorldServer
                         pipeline.AddLast("3", decoder);
                         pipeline.AddLast("4", new CountCharsServerHandler());
                         //pipeline.AddLast("4½", new HasUpperCharsServerHandler());
-                        pipeline.AddLast("5", serverHandler);
+                        pipeline.AddLast("5", helloWorldServerHandler);
                     }));
                 
                 IChannel bootstrapChannel = await bootstrap.BindAsync(serverPort);
