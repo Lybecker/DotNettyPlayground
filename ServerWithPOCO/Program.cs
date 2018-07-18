@@ -10,6 +10,12 @@ using System.Threading.Tasks;
 
 namespace ServerWithPOCO
 {
+    /*
+     * This solution shows how to build a TCP server
+     *  - Encode and decode byte[] into POCO (Plain Old C# Objects) via the custom PersonEncoder and PersonDecoder
+     *  - PersonServerHandler implements SimpleChannelInboundHandler and works with Person objects
+     *  - Using multiple output encoders - one for Person objects and one for strings
+     */
     class Program
     {
         static async Task RunServerAsync()
