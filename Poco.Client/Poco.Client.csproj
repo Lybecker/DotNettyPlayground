@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetty.Handlers" Version="0.4.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Poco.Comon\Poco.Comon.csproj" />
+  </ItemGroup>
+
+</Project>

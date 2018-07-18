@@ -46,7 +46,9 @@ namespace ServerWithPOCO
                     {
                         IChannelPipeline pipeline = channel.Pipeline;
 
-                        pipeline.AddLast(new StringEncoder()); // Multiple encoders allowed. PersonEncoder encodes Person objects to IByteBuffer
+                        // It is possible to use multiple encoders, but the client cannot parse the StringEncoder. Telnet to the server works.
+                        // Without the below StringEncoder, the PersonServerHandler.ChannelActive output will never be transmitted over the wire
+                        //pipeline.AddLast(new StringEncoder()); // Multiple encoders allowed. PersonEncoder encodes Person objects to IByteBuffer
                         pipeline.AddLast(encoder, decoder, serverHandler);
                     }));
 
