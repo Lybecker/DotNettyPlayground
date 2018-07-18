@@ -28,7 +28,6 @@ namespace HelloWorldServer
 
             try
             {
-
                 var bootstrap = new ServerBootstrap(); // Bootstrap only has one group
 
                 bootstrap
@@ -40,12 +39,15 @@ namespace HelloWorldServer
                     {
                         IChannelPipeline pipeline = channel.Pipeline;
 
-                        // Do not allow requests longer than n chars
-                        pipeline.AddLast(new DelimiterBasedFrameDecoder(8192, Delimiters.LineDelimiter()));
-                        pipeline.AddLast(encoder, decoder, serverHandler);
+                        // handler evaluation order is 1, 2, 3, 4, 5 for inbound data and 5, 4, 3, 2, 1 for outbound
+
+                        pipeline.AddLast("1", new DelimiterBasedFrameDecoder(8192, Delimiters.LineDelimiter())); // Do not allow requests longer than n chars
+                        pipeline.AddLast("2", encoder);
+                        pipeline.AddLast("3", decoder);
+                        pipeline.AddLast("4", new CountCharsServerHandler());
+                        //pipeline.AddLast("4½", new HasUpperCharsServerHandler());
+                        pipeline.AddLast("5", serverHandler);
                     }));
-
-
                 
                 IChannel bootstrapChannel = await bootstrap.BindAsync(serverPort);
 
