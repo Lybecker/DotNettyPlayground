@@ -11,6 +11,7 @@ This is a learning experince - Getting to know DotNetty with .Net Core.
 * http://netty.io/wiki/user-guide-for-4.x.html
 * http://shengwangi.blogspot.com/2016/03/netty-tutorial-hello-world-example.html
 * http://seeallhearall.blogspot.com/2012/06/netty-tutorial-part-15-on-channel.html
+* [Netty in Action](https://www.manning.com/books/netty-in-action) book
 
 ## Is it production ready?
 Yes, used by [Akka.Net](https://getakka.net/), [Azure IoT Hub](https://azure.microsoft.com/en-us/services/iot-hub/) and the [IoT Hub Edge Runtime](https://github.com/Azure/iotedge). [Microsoft has tested it with 100,000 connections](https://github.com/Azure/DotNetty/issues/135).
