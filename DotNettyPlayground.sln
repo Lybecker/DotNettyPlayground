@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldServer", "HelloWorldServer\HelloWorldServer.csproj", "{9A6ED751-6C33-4847-8E9A-818661E158B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorld.Server", "HelloWorld.Server\HelloWorld.Server.csproj", "{9A6ED751-6C33-4847-8E9A-818661E158B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poco.Server", "Poco.Server\Poco.Server.csproj", "{0786D944-C268-41EE-B2C0-BBEB67BBFA64}"
 EndProject
