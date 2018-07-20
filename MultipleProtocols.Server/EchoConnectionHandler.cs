@@ -22,5 +22,7 @@ namespace MultipleProtocols.Server
         {
             ctx.Flush();
         }
+
+        public override bool IsSharable => true;
     }
 }

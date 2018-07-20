@@ -23,5 +23,7 @@ namespace MultipleProtocols.Server
 
             ctx.WriteAndFlushAsync("What are your doing? Not sending me any data...\r\n");
         }
+
+        public override bool IsSharable => true;
     }
 }
