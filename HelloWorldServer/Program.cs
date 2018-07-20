@@ -36,7 +36,7 @@ namespace HelloWorldServer
 
             try
             {
-                var bootstrap = new ServerBootstrap(); // Bootstrap only has one group
+                var bootstrap = new ServerBootstrap();
 
                 bootstrap
                     .Group(bossGroup, workerGroup)
