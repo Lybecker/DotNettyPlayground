@@ -49,7 +49,9 @@ namespace HelloWorld.Server
 
                         // handler evaluation order is 1, 2, 3, 4, 5 for inbound data and 5, 4, 3, 2, 1 for outbound
 
-                        pipeline.AddLast("1", new DelimiterBasedFrameDecoder(8192, Delimiters.LineDelimiter())); // Do not allow requests longer than n chars
+                        // The DelimiterBasedFrameDecoder splits the data stream into frames (individual messages e.g. strings ) and do not allow requests longer than n chars.
+                        // It is required to use a frame decoder suchs as DelimiterBasedFrameDecoder or LineBasedFrameDecoder before the StringDecoder.
+                        pipeline.AddLast("1", new DelimiterBasedFrameDecoder(8192, Delimiters.LineDelimiter())); 
                         pipeline.AddLast("2", encoder);
                         pipeline.AddLast("3", decoder);
                         pipeline.AddLast("4", new CountCharsServerHandler());

@@ -40,7 +40,7 @@ namespace MultipleProtocols.Server
                     {
                         IChannelPipeline pipeline = channel.Pipeline;
 
-                        pipeline.AddLast(new DelimiterBasedFrameDecoder(8192, Delimiters.LineDelimiter())); // Do not allow requests longer than n chars
+                        pipeline.AddLast(new DelimiterBasedFrameDecoder(8192, Delimiters.LineDelimiter()));
                         pipeline.AddLast(new IdleStateHandler(5, 5, 0));
                         pipeline.AddLast(encoder); // Encoder has to be before every handler in the pipeline that writes data e.g. TerminateIdleConnectionHandler. 
                         pipeline.AddLast(new TerminateIdleConnectionHandler());

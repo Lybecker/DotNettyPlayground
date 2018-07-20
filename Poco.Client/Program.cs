@@ -33,7 +33,6 @@ namespace Poco.Client
                     {
                         IChannelPipeline pipeline = channel.Pipeline;
                         
-                        pipeline.AddLast(new DelimiterBasedFrameDecoder(8192, Delimiters.LineDelimiter())); // Do not allow requests longer than n chars
                         pipeline.AddLast(new PersonEncoder(), new PersonDecoder(), new PersonClientHandler());
                     }));
 
