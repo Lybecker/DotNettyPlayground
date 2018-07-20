@@ -8,9 +8,9 @@ namespace ServerWithPOCO
     {
         static readonly IInternalLogger Logger = InternalLoggerFactory.GetInstance<PersonServerHandler>();
 
-        public override void ChannelActive(IChannelHandlerContext contex)
+        public override void ChannelActive(IChannelHandlerContext ctx)
         {
-            contex.WriteAndFlushAsync("Write your name and age in this format '<name>|<age>': ");
+            ctx.WriteAndFlushAsync("Write your name and age in this format '<name>|<age>': ");
         }
 
         protected override void ChannelRead0(IChannelHandlerContext ctx, Person person)
