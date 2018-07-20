@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging.Console;
 using System;
 using System.Threading.Tasks;
 
-namespace HelloWorldServer
+namespace HelloWorld.Server
 {
     /*
      * This solution shows how to build a TCP server

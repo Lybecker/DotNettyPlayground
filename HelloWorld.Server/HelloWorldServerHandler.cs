@@ -3,7 +3,7 @@ using DotNetty.Transport.Channels;
 using System;
 using System.Net;
 
-namespace HelloWorldServer
+namespace HelloWorld.Server
 {
     public class HelloWorldServerHandler : SimpleChannelInboundHandler<string>
     {

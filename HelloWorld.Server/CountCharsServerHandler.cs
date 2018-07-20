@@ -1,7 +1,7 @@
 ﻿using DotNetty.Common.Internal.Logging;
 using DotNetty.Transport.Channels;
 
-namespace HelloWorldServer
+namespace HelloWorld.Server
 {
     /// <summary>
     /// Counts chars in the msg

@@ -2,7 +2,7 @@
 using DotNetty.Common.Utilities;
 using DotNetty.Transport.Channels;
 
-namespace HelloWorldServer
+namespace HelloWorld.Server
 {
     /// <summary>
     /// Detects if a message has upper chars in the string
