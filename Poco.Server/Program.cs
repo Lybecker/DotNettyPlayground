@@ -51,10 +51,6 @@ namespace Poco.Server
                     {
                         IChannelPipeline pipeline = channel.Pipeline;
 
-                        // It is possible to use multiple encoders, but the client cannot parse the StringEncoder. Telnet to the server works.
-                        // Without the below StringEncoder, the PersonServerHandler.ChannelActive output will never be transmitted over the wire.
-                        // If the server needs to decode into multiple POCOs then take a look at the Port Unification sample: https://github.com/netty/netty/blob/4.0/example/src/main/java/io/netty/example/portunification/PortUnificationServerHandler.java
-                        //pipeline.AddLast(new StringEncoder()); // Multiple encoders allowed. PersonEncoder encodes Person objects to IByteBuffer
                         pipeline.AddLast(encoder, decoder, serverHandler);
                     }));
 
