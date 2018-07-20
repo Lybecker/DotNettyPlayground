@@ -16,6 +16,9 @@ namespace ServerWithPOCO
             ctx.Channel.CloseCompletion.ContinueWith((x) => Logger.Info("Channel Closed"));
         }
 
+        // The Channel is closed hence the connection is closed
+        public override void ChannelInactive(IChannelHandlerContext ctx) => Logger.Info("Client disconnected");
+
         protected override void ChannelRead0(IChannelHandlerContext ctx, Person person)
         {
             Logger.Info("Received message: " + person);
