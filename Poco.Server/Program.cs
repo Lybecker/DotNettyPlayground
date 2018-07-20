@@ -9,7 +9,7 @@ using Poco.Comon;
 using System;
 using System.Threading.Tasks;
 
-namespace ServerWithPOCO
+namespace Poco.Server
 {
     /*
      * This solution shows how to build a TCP server

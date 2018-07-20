@@ -2,7 +2,7 @@
 using DotNetty.Transport.Channels;
 using Poco.Comon;
 
-namespace ServerWithPOCO
+namespace Poco.Server
 {
     public class PersonServerHandler : SimpleChannelInboundHandler<Person>
     {
