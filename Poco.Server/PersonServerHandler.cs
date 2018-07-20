@@ -11,6 +11,9 @@ namespace ServerWithPOCO
         public override void ChannelActive(IChannelHandlerContext ctx)
         {
             ctx.WriteAndFlushAsync("Write your name and age in this format '<name>|<age>': ");
+
+            // Detect when client disconnects
+            ctx.Channel.CloseCompletion.ContinueWith((x) => Logger.Info("Channel Closed"));
         }
 
         protected override void ChannelRead0(IChannelHandlerContext ctx, Person person)
