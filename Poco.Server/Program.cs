@@ -16,6 +16,11 @@ namespace ServerWithPOCO
      *  - Encode and decode byte[] into POCO (Plain Old C# Objects) via the custom PersonEncoder and PersonDecoder
      *  - PersonServerHandler implements SimpleChannelInboundHandler and works with Person objects
      *  - Using multiple output encoders - one for Person objects and one for strings
+     *  
+     *  **To test the server via telnet**
+     *  Open command prompt: telnet localhost 8080 
+     *  Type your name and age in this format: <name>|<age>
+     *  
      */
     class Program
     {
