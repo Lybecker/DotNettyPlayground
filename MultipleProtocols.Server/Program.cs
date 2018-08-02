@@ -40,7 +40,7 @@ namespace MultipleProtocols.Server
                     {
                         IChannelPipeline pipeline = channel.Pipeline;
 
-                        pipeline.AddLast(new DelimiterBasedFrameDecoder(8192, Delimiters.LineDelimiter()));
+                        pipeline.AddLast(new LineBasedFrameDecoder(80));
                         pipeline.AddLast(new IdleStateHandler(5, 5, 0));
                         pipeline.AddLast(encoder); // Encoder has to be before every handler in the pipeline that writes data e.g. TerminateIdleConnectionHandler. 
                         pipeline.AddLast(new TerminateIdleConnectionHandler());
@@ -50,7 +50,9 @@ namespace MultipleProtocols.Server
                         // If the server needs to decode into multiple POCOs then take a look at the Port Unification sample: https://github.com/netty/netty/blob/4.0/example/src/main/java/io/netty/example/portunification/PortUnificationServerHandler.java
                         //pipeline.AddLast(new StringEncoder()); // Multiple encoders allowed. PersonEncoder encodes Person objects to IByteBuffer
 
-                        pipeline.AddLast(decoder, serverHandler);
+
+                        pipeline.AddLast(new MultiObjectDecoder());
+                        pipeline.AddLast(decoder, new AHandler(), new BHandler(), serverHandler);
                     }));
 
                 IChannel bootstrapChannel = await bootstrap.BindAsync(serverPort);

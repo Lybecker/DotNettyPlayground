@@ -8,6 +8,7 @@ namespace MultipleProtocols.Server
     {
         static readonly IInternalLogger Logger = InternalLoggerFactory.GetInstance<TerminateIdleConnectionHandler>();
 
+        // Catch the UserEvent fired by the IdleStateHandler further up the pipeline of channel handlers
         public override void UserEventTriggered(IChannelHandlerContext ctx, object evt)
         {
             var e = evt as IdleStateEvent;
@@ -21,7 +22,7 @@ namespace MultipleProtocols.Server
             //    ctx.CloseAsync();
             //else if (e.State == IdleState.WriterIdle)
 
-            ctx.WriteAndFlushAsync("What are your doing? Not sending me any data...\r\n");
+            ctx.WriteAndFlushAsync("What are your doing? Not sending me any data. I'll terminate the connection soon...\r\n");
         }
 
         public override bool IsSharable => true;
