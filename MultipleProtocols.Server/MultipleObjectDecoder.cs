@@ -40,6 +40,10 @@ namespace MultipleProtocols.Server
                     output.Add(item: new B() { Number = val });
                 }
             }
+            else
+            {
+                output.Add(text);
+            }
         }
 
         public override bool IsSharable => true;
