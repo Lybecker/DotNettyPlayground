@@ -15,7 +15,7 @@ namespace MultipleProtocols.Server
     {
         static async Task RunServerAsync()
         {
-            var logLevel = LogLevel.INFO;
+            var logLevel = LogLevel.DEBUG;
             InternalLoggerFactory.DefaultFactory.AddProvider(new ConsoleLoggerProvider((s, level) => true, false));
 
             var serverPort = 8080;
@@ -51,7 +51,7 @@ namespace MultipleProtocols.Server
                         //pipeline.AddLast(new StringEncoder()); // Multiple encoders allowed. PersonEncoder encodes Person objects to IByteBuffer
 
 
-                        pipeline.AddLast(new MultiObjectDecoder());
+                        pipeline.AddLast(new MultiObjectDecoder(logRawMessages: true));
                         pipeline.AddLast(decoder, new AHandler(), new BHandler(), serverHandler);
                     }));
 
