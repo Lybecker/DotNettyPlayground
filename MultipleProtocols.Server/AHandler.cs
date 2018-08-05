@@ -1,5 +1,6 @@
 ﻿using DotNetty.Common.Internal.Logging;
 using DotNetty.Transport.Channels;
+using MultipleProtocols.Comon;
 
 namespace MultipleProtocols.Server
 {
@@ -10,6 +11,11 @@ namespace MultipleProtocols.Server
         protected override void ChannelRead0(IChannelHandlerContext ctx, A obj)
         {
             ctx.WriteAsync($"You send me an A object with message: '{obj.Message}'\r\n");
+        }
+
+        public override void ChannelReadComplete(IChannelHandlerContext ctx)
+        {
+            ctx.Flush();
         }
 
         public override bool IsSharable => true;

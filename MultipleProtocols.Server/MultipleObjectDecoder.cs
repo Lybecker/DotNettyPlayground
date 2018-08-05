@@ -2,6 +2,7 @@
 using DotNetty.Codecs;
 using DotNetty.Common.Internal.Logging;
 using DotNetty.Transport.Channels;
+using MultipleProtocols.Comon;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -48,14 +49,4 @@ namespace MultipleProtocols.Server
 
         public override bool IsSharable => true;
     }
-
-    public class A
-    {
-        public string Message { get; set; }
-    }
-
-    public class B
-    {
-        public int Number { get; set; }
-    } 
 }

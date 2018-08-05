@@ -24,8 +24,7 @@ namespace MultipleProtocols.Server
             var workerGroup = new MultithreadEventLoopGroup(); // handles the traffic of the accepted connection once the boss accepts the connection and registers the accepted connection to the worker
 
             var encoder = new StringEncoder();
-            var decoder = new StringDecoder();
-            var serverHandler = new EchoConnectionHandler();
+            var decoder = new ProtocolSelectorDecoder(logRawMessages: true);
 
             try
             {
@@ -40,19 +39,12 @@ namespace MultipleProtocols.Server
                     {
                         IChannelPipeline pipeline = channel.Pipeline;
 
-                        pipeline.AddLast(new LineBasedFrameDecoder(80));
+                        //pipeline.AddLast(new LineBasedFrameDecoder(80));
                         pipeline.AddLast(new IdleStateHandler(5, 5, 0));
                         pipeline.AddLast(encoder); // Encoder has to be before every handler in the pipeline that writes data e.g. TerminateIdleConnectionHandler. 
                         pipeline.AddLast(new TerminateIdleConnectionHandler());
 
-                        // It is possible to use multiple encoders, but the client cannot parse the StringEncoder. Telnet to the server works.
-                        // Without the below StringEncoder, the PersonServerHandler.ChannelActive output will never be transmitted over the wire.
-                        // If the server needs to decode into multiple POCOs then take a look at the Port Unification sample: https://github.com/netty/netty/blob/4.0/example/src/main/java/io/netty/example/portunification/PortUnificationServerHandler.java
-                        //pipeline.AddLast(new StringEncoder()); // Multiple encoders allowed. PersonEncoder encodes Person objects to IByteBuffer
-
-
-                        pipeline.AddLast(new MultiObjectDecoder(logRawMessages: true));
-                        pipeline.AddLast(decoder, new AHandler(), new BHandler(), serverHandler);
+                        pipeline.AddLast(decoder);
                     }));
 
                 IChannel bootstrapChannel = await bootstrap.BindAsync(serverPort);
