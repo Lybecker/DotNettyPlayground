@@ -15,6 +15,8 @@ namespace MultipleProtocols.Server
     ///     A | B
     /// 
     /// Sequencial messages has to map to the expected handler
+    /// 
+    /// The MultipleProtocols.Client has to be modified to work with this decoder, as it sends the protocol selector with every message.
     /// </summary>
     public class InitialProtocolSelectorDecoder : MessageToMessageDecoder<IByteBuffer> 
     {
