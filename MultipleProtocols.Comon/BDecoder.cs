@@ -21,6 +21,9 @@ namespace MultipleProtocols.Comon
             if (_logRawMessages)
                 Logger.Debug($"Decoding message: \n\r'{ByteBufferUtil.PrettyHexDump(message)}'");
 
+            if (message.ReadableBytes != 4)
+                return;
+
             var number = message.ReadInt();  // Could have used .ReadIntLE() if the message was transfered as Little-Endian
 
             output.Add(item: new B() { Number = number });
