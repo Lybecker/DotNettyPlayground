@@ -11,6 +11,20 @@ using System.Threading.Tasks;
 
 namespace MultipleProtocols.Server
 {
+    /*
+     * This solution shows how to handle multiple protocols with the same endpoint/port
+     *  - Two object types (StringObj and NumberObj) each decoded differently
+     *   - The first char is used as the protocol selector
+     *    - A = StringObj
+     *    - B = NumberObj
+     *  - There are multiple ways of handling multiple protocols
+     *   - The initial message sets the protocol - see InitialProtocolSelectorDecoder
+     *   - Every message forward the protocol selector char - See ProtocolSelectorDecoder
+     *  - The channel pipeline is modified dynamically via one of the to ProtocolSelectorDecoders, so the pipeline in Program.cs does not have a full functional pipeline.
+     *  - This sample also shows how to use the IdleStateHandler fireing UserEvents, catched by TerminateIdleConnectionHandler
+     *  
+     *  Try the server via the MultipleProtocols.Client (only sends NumberObj) or via telnet
+     */
     class Program
     {
         static async Task RunServerAsync()
