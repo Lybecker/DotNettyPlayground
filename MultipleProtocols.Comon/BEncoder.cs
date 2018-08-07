@@ -30,6 +30,11 @@ namespace MultipleProtocols.Comon
             Array.Reverse(data);                              
             buffer.WriteBytes(data);
 
+            // Use Windows style newline to indicate the data frame is complete.
+            // As the lenght of this message type is know, then the LineBasedFrameDecoder could be used at the server
+            buffer.WriteByte('\r');
+            buffer.WriteByte('\n');
+
             if (_logRawMessages)
                 Logger.Debug($"Decoding message: \n\r'{ByteBufferUtil.PrettyHexDump(buffer)}'");
 

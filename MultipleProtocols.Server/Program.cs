@@ -39,7 +39,7 @@ namespace MultipleProtocols.Server
                     {
                         IChannelPipeline pipeline = channel.Pipeline;
 
-                        //pipeline.AddLast(new LineBasedFrameDecoder(80));
+                        pipeline.AddLast(new LineBasedFrameDecoder(80));
                         pipeline.AddLast(new IdleStateHandler(5, 5, 0));
                         pipeline.AddLast(encoder); // Encoder has to be before every handler in the pipeline that writes data e.g. TerminateIdleConnectionHandler. 
                         pipeline.AddLast(new TerminateIdleConnectionHandler());
