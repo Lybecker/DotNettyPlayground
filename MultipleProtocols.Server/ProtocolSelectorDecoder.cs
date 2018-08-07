@@ -64,37 +64,37 @@ namespace MultipleProtocols.Server
 
         private void EnableAHanderProtocol(IChannelHandlerContext ctx)
         {
-            if (!IsProtocolPipeline<AHandler>(ctx))
+            if (!IsProtocolPipeline<StringObjHandler>(ctx))
             {
-                ctx.Channel.Pipeline.AddLast("A Decoder", new ADecoder(logRawMessages: _logRawMessages));
-                ctx.Channel.Pipeline.AddLast("A Handler", new AHandler());
+                ctx.Channel.Pipeline.AddLast("StringObj Decoder", new StringObjDecoder(logRawMessages: _logRawMessages));
+                ctx.Channel.Pipeline.AddLast("StringObj Handler", new StringObjHandler());
             }
         }
 
         private void EnableBHanderProtocol(IChannelHandlerContext ctx)
         {
-            if (!IsProtocolPipeline<BHandler>(ctx))
+            if (!IsProtocolPipeline<NumberObjHandler>(ctx))
             {
-                ctx.Channel.Pipeline.AddLast("B Decoder", new BDecoder(logRawMessages: _logRawMessages));
-                ctx.Channel.Pipeline.AddLast("B Handler", new BHandler());
+                ctx.Channel.Pipeline.AddLast("NumberObj Decoder", new NumberObjDecoder(logRawMessages: _logRawMessages));
+                ctx.Channel.Pipeline.AddLast("NumberObj Handler", new NumberObjHandler());
             }
         }
 
         private void DisableAHanderProtocol(IChannelHandlerContext ctx)
         {
-            if (IsProtocolPipeline<AHandler>(ctx))
+            if (IsProtocolPipeline<StringObjHandler>(ctx))
             {
-                ctx.Channel.Pipeline.Remove<ADecoder>();
-                ctx.Channel.Pipeline.Remove<AHandler>();
+                ctx.Channel.Pipeline.Remove<StringObjDecoder>();
+                ctx.Channel.Pipeline.Remove<StringObjHandler>();
             }
         }
 
         private void DisableBHanderProtocol(IChannelHandlerContext ctx)
         {
-            if (IsProtocolPipeline<BHandler>(ctx))
+            if (IsProtocolPipeline<NumberObjHandler>(ctx))
             {
-                ctx.Channel.Pipeline.Remove<BDecoder>();
-                ctx.Channel.Pipeline.Remove<BHandler>();
+                ctx.Channel.Pipeline.Remove<NumberObjDecoder>();
+                ctx.Channel.Pipeline.Remove<NumberObjHandler>();
             }
         }
 

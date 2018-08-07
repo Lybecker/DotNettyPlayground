@@ -34,7 +34,7 @@ namespace MultipleProtocols.Client
                     {
                         IChannelPipeline pipeline = channel.Pipeline;
 
-                        pipeline.AddLast(new BEncoder(logRawMessages: true), new StringDecoder(), new PrintReturnMessageClientHandler());
+                        pipeline.AddLast(new NumberObjEncoder(logRawMessages: true), new StringDecoder(), new PrintReturnMessageClientHandler());
                     }));
 
                 IChannel bootstrapChannel = await bootstrap.ConnectAsync(new IPEndPoint(serverIP, serverPort));
@@ -46,7 +46,7 @@ namespace MultipleProtocols.Client
                     if (!Int32.TryParse(stringNumber, out int number))
                         continue;
 
-                    await bootstrapChannel.WriteAndFlushAsync(new B() { Number = number });
+                    await bootstrapChannel.WriteAndFlushAsync(new NumberObj() { Number = number });
                 }
 
                 //await bootstrapChannel.CloseAsync();

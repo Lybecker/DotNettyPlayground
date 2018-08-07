@@ -7,19 +7,19 @@ using System.Collections.Generic;
 
 namespace MultipleProtocols.Comon
 {
-    public class BEncoder : MessageToMessageEncoder<B>
+    public class NumberObjEncoder : MessageToMessageEncoder<NumberObj>
     {
-        static readonly IInternalLogger Logger = InternalLoggerFactory.GetInstance<BEncoder>();
+        static readonly IInternalLogger Logger = InternalLoggerFactory.GetInstance<NumberObjEncoder>();
         private readonly bool _logRawMessages;
 
-        public BEncoder(bool logRawMessages)
+        public NumberObjEncoder(bool logRawMessages)
         {
             _logRawMessages = logRawMessages;
         }
 
-        protected override void Encode(IChannelHandlerContext context, B obj, List<object> output)
+        protected override void Encode(IChannelHandlerContext ctx, NumberObj obj, List<object> output)
         {
-            IByteBuffer buffer = context.Allocator.Buffer();
+            IByteBuffer buffer = ctx.Allocator.Buffer();
 
             // Specify the protocol selector
             buffer.WriteByte((byte)'B');

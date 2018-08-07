@@ -29,7 +29,7 @@ namespace MultipleProtocols.Server
             _logRawMessages = logRawMessages;
         }
 
-        protected override void Decode(IChannelHandlerContext context, IByteBuffer message, List<object> output)
+        protected override void Decode(IChannelHandlerContext ctx, IByteBuffer message, List<object> output)
         {
             message.MarkReaderIndex();
 
@@ -41,22 +41,23 @@ namespace MultipleProtocols.Server
 
             if (text.StartsWith('A'))
             {
-                context.Channel.Pipeline.AddLast("A Decoder", new ADecoder(logRawMessages: _logRawMessages));
-                context.Channel.Pipeline.AddLast("A Handler", new AHandler());
+                ctx.Channel.Pipeline.AddLast("StringObj Decoder", new StringObjDecoder(logRawMessages: _logRawMessages));
+                ctx.Channel.Pipeline.AddLast("StringObj Handler", new StringObjHandler());
                 //output.Add(message.Retain());
             }
             else if (text.StartsWith('B'))
             {
-                context.Channel.Pipeline.AddLast("B Decoder", new BDecoder(logRawMessages: _logRawMessages));
-                context.Channel.Pipeline.AddLast("B Handler", new BHandler());
+                ctx.Channel.Pipeline.AddLast("NumberObj Decoder", new NumberObjDecoder(logRawMessages: _logRawMessages));
+                ctx.Channel.Pipeline.AddLast("NumberObj Handler", new NumberObjHandler());
             }
             else
             {
-                context.Channel.Pipeline.AddLast("String Decoder", new StringDecoder());
-                context.Channel.Pipeline.AddLast("Echo Handler", new EchoConnectionHandler());
+                // Unknown protocol; discard and close the connection.
+                message.Clear();
+                ctx.CloseAsync();
             }
 
-            context.Channel.Pipeline.Remove(this);
+            ctx.Channel.Pipeline.Remove(this);
         }
 
         public override bool IsSharable => true;
