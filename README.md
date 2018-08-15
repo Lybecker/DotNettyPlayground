@@ -1,6 +1,8 @@
 # DotNetty Playground
 This is a learning experince - Getting to know DotNetty with .Net Core.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/ybny3f6u2aapq3f2?svg=true)](https://ci.appveyor.com/project/Lybecker/dotnettyplayground)
+
 # DotNetty
 [DotNetty](https://github.com/Azure/DotNetty) is a port of [Netty](http://netty.io/), asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers & clients.
 
